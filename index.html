@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YX — Portfolio</title>
+  <title>Olivia — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -309,7 +309,20 @@
       font-weight: 700;
       color: var(--teal);
       line-height: 1;
+      display: inline-block;
+      animation: floatNum 3s ease-in-out infinite;
+      transition: transform 0.2s, text-shadow 0.2s;
+      cursor: default;
     }
+    .stat-num:hover {
+      transform: scale(1.18) translateY(-4px) !important;
+      text-shadow: 0 0 24px rgba(0,229,200,0.7);
+      animation-play-state: paused;
+    }
+    .stat-card:nth-child(1) .stat-num { animation-delay: 0s; }
+    .stat-card:nth-child(2) .stat-num { animation-delay: 0.6s; }
+    .stat-card:nth-child(3) .stat-num { animation-delay: 1.2s; }
+    .stat-card:nth-child(4) .stat-num { animation-delay: 1.8s; }
     .stat-label {
       font-size: 0.8rem;
       color: var(--white-dim);
@@ -704,6 +717,10 @@
       0%, 100% { opacity: 0.4; }
       50% { opacity: 1; }
     }
+    @keyframes floatNum {
+      0%, 100% { transform: translateY(0px); text-shadow: 0 0 8px rgba(0,229,200,0.2); }
+      50% { transform: translateY(-6px); text-shadow: 0 0 20px rgba(0,229,200,0.5); }
+    }
 
     /* ── CURSOR DOT ── */
     .cursor {
@@ -755,12 +772,10 @@
 
 <!-- ── NAV ── -->
 <nav id="navbar">
-  <a href="#hero" class="nav-logo">YX<span>.portfolio</span></a>
+  <a href="#hero" class="nav-logo">Olivia's<span> Portfolio</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#skills">Services</a></li>
     <li><a href="#work">Work</a></li>
-    <li><a href="#process">Process</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Let's Talk</a>
@@ -768,13 +783,13 @@
 
 <!-- ── HERO ── -->
 <section id="hero">
-  <p class="hero-tag">// Marketing &amp; Product Portfolio</p>
+  <p class="hero-tag">Marketing · Product · AI-Enabled</p>
   <h1 class="hero-headline">
-    Strategy meets<br /><span class="accent">design.</span><br />
+    Stories shape<br /><span class="accent">strategy.</span><br />
     Ideas become<br /><span class="accent">impact.</span>
   </h1>
   <p class="hero-sub">
-    Building brands, crafting campaigns, and shipping products that cut through the noise.
+    Marketer transitioning into product. I bring audience instincts to product decisions — and use AI to move faster.
   </p>
   <div class="hero-actions">
     <a href="#work" class="btn-primary">View My Work</a>
@@ -794,7 +809,7 @@
 <!-- ── ABOUT ── -->
 <section id="about">
   <div class="reveal">
-    <p class="section-label">// 01 — About</p>
+    <p class="section-label">01 — About</p>
     <h2 class="section-title">The mind behind the work</h2>
     <div class="section-divider"></div>
   </div>
@@ -831,8 +846,8 @@
   </div>
 </section>
 
-<!-- ── SKILLS ── -->
-<section id="skills">
+<!-- ── SKILLS (removed) ── -->
+<!--<section id="skills">
   <div class="reveal">
     <p class="section-label">// 02 — Services</p>
     <h2 class="section-title">What I bring to the table</h2>
@@ -919,7 +934,7 @@
 <!-- ── WORK ── -->
 <section id="work">
   <div class="reveal">
-    <p class="section-label">// 03 — Selected Work</p>
+    <p class="section-label">02 — Selected Work</p>
     <h2 class="section-title">Projects that drove results</h2>
     <div class="section-divider"></div>
   </div>
@@ -1074,47 +1089,13 @@
       </div>
     </div>
   </div>
-</section>
-
-<!-- ── PROCESS ── -->
-<section id="process">
-  <div class="reveal">
-    <p class="section-label">// 04 — Process</p>
-    <h2 class="section-title">How I work</h2>
-    <div class="section-divider"></div>
-  </div>
-  <div class="process-steps reveal reveal-delay-2">
-    <div class="process-step">
-      <div class="step-num">01</div>
-      <div class="step-name">Discover</div>
-      <div class="step-desc">Deep-dive into your business, audience, competitive landscape, and current performance to find the real levers.</div>
-      <div class="step-line"></div>
-    </div>
-    <div class="process-step">
-      <div class="step-num">02</div>
-      <div class="step-name">Strategise</div>
-      <div class="step-desc">Translate insights into a clear strategic framework — positioning, channels, KPIs, and a prioritised roadmap.</div>
-      <div class="step-line"></div>
-    </div>
-    <div class="process-step">
-      <div class="step-num">03</div>
-      <div class="step-name">Execute</div>
-      <div class="step-desc">Hands-on execution with precision. Campaign builds, creative briefing, copy, targeting, and launch management.</div>
-      <div class="step-line"></div>
-    </div>
-    <div class="process-step">
-      <div class="step-num">04</div>
-      <div class="step-name">Iterate</div>
-      <div class="step-desc">Rigorous measurement, rapid learning loops, and continuous optimisation — compounding results over time.</div>
-    </div>
-  </div>
-</section>
+</section>-->
 
 <!-- ── CONTACT ── -->
 <section id="contact">
   <div class="contact-inner">
     <div class="reveal">
-      <p class="section-label">// 05 — Contact</p>
+      <p class="section-label">03 — Contact</p>
       <h2 class="section-title">Ready to build something?</h2>
       <div class="section-divider"></div>
     </div>
@@ -1122,40 +1103,7 @@
       Whether you have a launch to plan, a brand to rebuild, or a growth problem to solve — let's talk. I'm selective with projects and focused on doing fewer things better.
     </p>
 
-    <form class="contact-form reveal reveal-delay-2" onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Your name" required />
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="your@email.com" required />
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="interest">What are you looking for?</label>
-        <select id="interest">
-          <option value="">Select a service</option>
-          <option>Growth Marketing</option>
-          <option>Brand Strategy</option>
-          <option>Product Marketing</option>
-          <option>Content Strategy</option>
-          <option>Full Engagement</option>
-          <option>Just exploring</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="message">Tell me more</label>
-        <textarea id="message" placeholder="Brief overview of your project, timeline, budget range..."></textarea>
-      </div>
-      <div class="form-submit">
-        <button type="submit" class="btn-submit">Send Message</button>
-        <span class="form-note" id="form-status"></span>
-      </div>
-    </form>
-
-    <div class="contact-links reveal reveal-delay-3">
+    <div class="contact-links reveal reveal-delay-2">
       <a href="mailto:hello@yx.portfolio" class="contact-link">
         <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         hello@yx.portfolio
@@ -1175,7 +1123,7 @@
 <!-- ── FOOTER ── -->
 <footer>
   <div class="footer-copy">
-    &copy; 2026 <span>YX</span> — All rights reserved
+    &copy; 2026 <span>Olivia</span> — All rights reserved
   </div>
   <a href="#hero" class="footer-back">Back to top ↑</a>
 </footer>
