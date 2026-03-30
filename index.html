@@ -450,6 +450,121 @@
       letter-spacing: 0.04em;
     }
 
+    /* ── WORK ── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .work-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .work-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,229,200,0.3);
+    }
+    .work-card-visual {
+      position: relative;
+      height: 72px;
+      background: linear-gradient(135deg, rgba(0,229,200,0.07), rgba(139,92,246,0.07));
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      align-items: flex-end;
+      padding: 0.9rem 1.5rem;
+    }
+    .visual-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(0,229,200,0.1) 0%, transparent 70%);
+    }
+    .visual-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--teal);
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+    .work-card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex: 1;
+    }
+    .work-cat {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: var(--white-dim);
+      text-transform: uppercase;
+    }
+    .work-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.3;
+    }
+    .work-desc {
+      font-size: 0.875rem;
+      color: var(--white-dim);
+      line-height: 1.7;
+    }
+    .work-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .work-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .work-tag {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+      background: var(--teal-dim);
+      color: var(--teal);
+      letter-spacing: 0.04em;
+    }
+    .work-link {
+      font-size: 0.8rem;
+      color: var(--teal);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .work-link:hover { opacity: 0.7; }
+    .work-sub-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      margin-top: 3rem;
+      margin-bottom: 1.25rem;
+      padding-left: 0.25rem;
+      border-left: 2px solid var(--teal);
+      padding-left: 0.75rem;
+    }
+    @media (max-width: 900px) {
+      .work-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── CONTACT ── */
     #contact {
       background: linear-gradient(180deg, transparent, rgba(8,8,30,0.55));
@@ -660,27 +775,6 @@
       <p>
         A website revamp project changed everything. Taking something old and abandoned and watching it come alive again for real users gave me a sense of fulfilment I hadn't felt before. That's when I understood what drives me: building things that actually matter to the people using them.
       </p>
-      <p>
-        My marketing background shapes how I think about product: I start with the user and the market, then work toward what needs to be refined. I use AI in my day-to-day workflow and build my own projects to stay hands-on with how things are made.
-      </p>
-    </div>
-    <div class="stats-grid reveal reveal-delay-3">
-      <div class="stat-card">
-        <div class="stat-num">50+</div>
-        <div class="stat-label">Campaigns Launched</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">12</div>
-        <div class="stat-label">Products Brought to Market</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">3x</div>
-        <div class="stat-label">Avg. Growth Achieved</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">8yr</div>
-        <div class="stat-label">Industry Experience</div>
-      </div>
     </div>
   </div>
 </section>
@@ -770,111 +864,84 @@
   </div>
 </section>
 
+-->
+
 <!-- ── WORK ── -->
 <section id="work">
   <div class="reveal">
     <p class="section-label">02 — Selected Work</p>
-    <h2 class="section-title">Projects that drove results</h2>
+    <h2 class="section-title">What I've built</h2>
     <div class="section-divider"></div>
   </div>
+  <p class="work-sub-label reveal">Web &amp; Product</p>
   <div class="work-grid">
-    <div class="work-card featured card-1 reveal reveal-delay-1">
+    <div class="work-card card-1 reveal reveal-delay-1">
       <div class="work-card-visual">
         <div class="visual-bg"></div>
-        <svg class="card-art" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid slice">
-          <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00e5c8" stop-opacity="0.5"/><stop offset="100%" stop-color="#00e5c8" stop-opacity="0"/></linearGradient></defs>
-          <g stroke="#00e5c8" stroke-width="0.5" fill="none" opacity="0.6">
-            <line x1="0" y1="150" x2="800" y2="150"/>
-            <line x1="400" y1="0" x2="400" y2="300"/>
-            <circle cx="400" cy="150" r="60" opacity="0.4"/>
-            <circle cx="400" cy="150" r="120" opacity="0.25"/>
-            <circle cx="400" cy="150" r="180" opacity="0.15"/>
-            <polyline points="50,220 180,80 280,160 380,40 480,130 580,70 720,200" stroke-width="1.5" opacity="0.8"/>
-            <circle cx="180" cy="80" r="4" fill="#00e5c8" opacity="0.9"/>
-            <circle cx="380" cy="40" r="4" fill="#00e5c8" opacity="0.9"/>
-            <circle cx="580" cy="70" r="4" fill="#00e5c8" opacity="0.9"/>
-          </g>
-          <rect x="0" y="0" width="800" height="300" fill="url(#g1)" opacity="0.2"/>
-        </svg>
-        <span class="visual-label">Featured Project</span>
+        <span class="visual-label">Website Revamp · B2B · Site Closed</span>
       </div>
       <div class="work-card-body">
-        <div class="work-cat">Brand Strategy + Growth</div>
-        <div class="work-title">Series B SaaS — Full Rebrand &amp; GTM Relaunch</div>
-        <div class="work-desc">Led the complete repositioning of a B2B SaaS platform — new messaging architecture, brand identity, and coordinated GTM push across paid, content, and partner channels. Resulted in 3.2× pipeline growth in Q1 post-launch.</div>
+        <div class="work-cat">Content Strategy · UI/UX · SEO</div>
+        <div class="work-title">TDSG Website Revamp</div>
+        <div class="work-desc">Volunteered to lead a full website overhaul addressing outdated service content and a user experience that no longer reflected current offerings. Owned content restructuring and messaging, collaborated with UI/UX and software engineer, and implemented SEO improvements across the site.</div>
         <div class="work-footer">
           <div class="work-tags">
-            <span class="work-tag">Brand</span>
-            <span class="work-tag">GTM</span>
-            <span class="work-tag">Paid</span>
-            <span class="work-tag">Content</span>
+            <span class="work-tag">Content Strategy</span>
+            <span class="work-tag">SEO</span>
+            <span class="work-tag">UI/UX</span>
+            <span class="work-tag">Cross-functional</span>
           </div>
-          <a href="#" class="work-link">Case study <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
     </div>
     <div class="work-card card-2 reveal reveal-delay-2">
-      <div class="work-card-visual"><div class="visual-bg"></div><span class="visual-label">Product Launch</span></div>
-      <div class="work-card-body">
-        <div class="work-cat">Product Marketing</div>
-        <div class="work-title">Consumer App Launch — Zero to 50K Users</div>
-        <div class="work-desc">Crafted the launch narrative, influencer seeding strategy, and onboarding funnel for a consumer fintech app. Hit 50K MAU within 90 days with a $0 paid budget.</div>
-        <div class="work-footer">
-          <div class="work-tags"><span class="work-tag">Organic</span><span class="work-tag">Influencer</span><span class="work-tag">Onboarding</span></div>
-          <a href="#" class="work-link">View <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
+      <div class="work-card-visual">
+        <div class="visual-bg"></div>
+        <span class="visual-label">Website Revamp · B2B · Ongoing</span>
       </div>
-    </div>
-    <div class="work-card card-3 reveal reveal-delay-3">
-      <div class="work-card-visual"><div class="visual-bg"></div><span class="visual-label">Campaign</span></div>
       <div class="work-card-body">
-        <div class="work-cat">Integrated Campaign</div>
-        <div class="work-title">Seasonal D2C Campaign — 4.8× ROAS</div>
-        <div class="work-desc">Planned and executed a multi-channel Q4 campaign across Meta, Google, email, and retail — delivering 4.8× blended ROAS against a $500K media budget.</div>
+        <div class="work-cat">Content Strategy · Messaging · SEO · UI/UX</div>
+        <div class="work-title">eServHub Website Revamp</div>
+        <div class="work-desc">Leading a brand and website refresh to better reflect current offerings and value proposition. Working closely with stakeholders across business units to align service messaging, while driving content restructuring, SEO-friendly information architecture, and UI/UX improvements for long-term organic growth.</div>
         <div class="work-footer">
-          <div class="work-tags"><span class="work-tag">Paid Social</span><span class="work-tag">Email</span><span class="work-tag">Analytics</span></div>
-          <a href="#" class="work-link">View <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-      </div>
-    </div>
-    <div class="work-card card-4 reveal reveal-delay-4">
-      <div class="work-card-visual"><div class="visual-bg"></div><span class="visual-label">Content</span></div>
-      <div class="work-card-body">
-        <div class="work-cat">Content Strategy</div>
-        <div class="work-title">B2B Thought Leadership — 10× Organic Traffic</div>
-        <div class="work-desc">Built an SEO-led content engine for a HR-tech company from scratch — editorial calendar, cluster strategy, and distribution. Grew organic traffic 10× in 12 months.</div>
-        <div class="work-footer">
-          <div class="work-tags"><span class="work-tag">SEO</span><span class="work-tag">Content</span><span class="work-tag">B2B</span></div>
-          <a href="#" class="work-link">View <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <div class="work-tags">
+            <span class="work-tag">Content Strategy</span>
+            <span class="work-tag">Messaging</span>
+            <span class="work-tag">SEO</span>
+            <span class="work-tag">UI/UX</span>
+          </div>
+          <a href="https://www.eservhub.com" target="_blank" class="work-link">View site <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
     </div>
   </div>
-</section>-->
+
+  <p class="work-sub-label reveal">Campaigns &amp; GTM</p>
+  <div class="work-grid">
+    <!-- Campaign cards to be added -->
+  </div>
+</section>
 
 <!-- ── CONTACT ── -->
 <section id="contact">
   <div class="contact-inner">
     <div class="reveal">
       <p class="section-label">03 — Contact</p>
-      <h2 class="section-title">Ready to build something?</h2>
+      <h2 class="section-title">Let's start a conversation.</h2>
       <div class="section-divider"></div>
     </div>
-    <p class="contact-subtitle reveal reveal-delay-1">
-      Whether you have a launch to plan, a brand to rebuild, or a growth problem to solve — let's talk. I'm selective with projects and focused on doing fewer things better.
-    </p>
     <div class="contact-links reveal reveal-delay-2">
-      <a href="mailto:hello@yx.portfolio" class="contact-link">
+      <a href="mailto:yixuanloha@gmail.com" class="contact-link">
         <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        hello@yx.portfolio
+        yixuanloha@gmail.com
       </a>
-      <a href="#" class="contact-link">
+      <a href="https://www.linkedin.com/in/olivialim1218/" target="_blank" class="contact-link">
         <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         LinkedIn
       </a>
-      <a href="#" class="contact-link">
-        <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
-        Twitter / X
+      <a href="CV-Olivia.pdf" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Resume
       </a>
     </div>
   </div>
