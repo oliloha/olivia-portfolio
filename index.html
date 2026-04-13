@@ -46,43 +46,102 @@
       border-radius: 2px;
     }
 
-    /* ── NEBULA BLOBS ── */
-    .nebula {
+    /* ── DOT GRID ── */
+    .dot-grid {
       position: fixed;
-      border-radius: 50%;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size: 38px 38px;
       pointer-events: none;
       z-index: 0;
     }
-    .nebula-1 {
+
+    /* ── PARALLAX BACKGROUND ── */
+    .parallax-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .geo-layer {
+      position: absolute;
+      inset: 0;
+      will-change: transform;
+    }
+
+    /* Geometric rings */
+    .geo-ring {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .geo-ring-1 {
+      width: 700px; height: 700px;
+      top: -200px; left: -180px;
+      border: 1px solid rgba(0,229,200,0.07);
+    }
+    .geo-ring-2 {
+      width: 480px; height: 480px;
+      top: 28%; right: -120px;
+      border: 1px solid rgba(139,92,246,0.08);
+    }
+    .geo-ring-3 {
       width: 900px; height: 900px;
-      background: radial-gradient(circle, rgba(0,229,200,0.055) 0%, transparent 70%);
-      top: -250px; left: -250px;
-      filter: blur(70px);
-      animation: nebulaFloat1 22s ease-in-out infinite;
+      bottom: -320px; left: 18%;
+      border: 1px solid rgba(0,229,200,0.04);
     }
-    .nebula-2 {
-      width: 750px; height: 750px;
-      background: radial-gradient(circle, rgba(139,92,246,0.065) 0%, transparent 70%);
-      bottom: -200px; right: -200px;
-      filter: blur(70px);
-      animation: nebulaFloat2 28s ease-in-out infinite;
+    .geo-ring-4 {
+      width: 280px; height: 280px;
+      top: 62%; left: 6%;
+      border: 1px solid rgba(139,92,246,0.06);
     }
-    .nebula-3 {
-      width: 550px; height: 550px;
-      background: radial-gradient(circle, rgba(0,80,220,0.04) 0%, transparent 70%);
-      top: 30%; right: 25%;
+    .geo-ring-5 {
+      width: 180px; height: 180px;
+      top: 18%; right: 22%;
+      border: 1px solid rgba(0,229,200,0.09);
+    }
+
+    /* Cross accents */
+    .geo-cross {
+      position: absolute;
+      width: 20px; height: 20px;
+      pointer-events: none;
+    }
+    .geo-cross::before, .geo-cross::after {
+      content: '';
+      position: absolute;
+      background: rgba(0,229,200,0.2);
+      border-radius: 1px;
+    }
+    .geo-cross::before { width: 1px; height: 100%; left: 50%; top: 0; }
+    .geo-cross::after  { width: 100%; height: 1px; top: 50%; left: 0; }
+    .geo-cross-1 { top: 14%; left: 9%; }
+    .geo-cross-2 { top: 44%; right: 11%; width: 14px; height: 14px; }
+    .geo-cross-3 { top: 72%; left: 22%; width: 16px; height: 16px; opacity: 0.7; }
+    .geo-cross-4 { top: 85%; right: 30%; width: 12px; height: 12px; opacity: 0.5; }
+
+    /* Depth blobs */
+    .depth-blob {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
       filter: blur(90px);
-      animation: nebulaFloat1 35s ease-in-out infinite reverse;
     }
-    @keyframes nebulaFloat1 {
-      0%, 100% { transform: translate(0, 0); }
-      30%  { transform: translate(50px, -40px); }
-      65%  { transform: translate(-30px, 55px); }
+    .depth-blob-1 {
+      width: 650px; height: 650px;
+      top: -120px; left: -120px;
+      background: radial-gradient(circle, rgba(0,229,200,0.055) 0%, transparent 70%);
     }
-    @keyframes nebulaFloat2 {
-      0%, 100% { transform: translate(0, 0); }
-      40%  { transform: translate(-45px, 30px); }
-      70%  { transform: translate(35px, -50px); }
+    .depth-blob-2 {
+      width: 550px; height: 550px;
+      bottom: -100px; right: -100px;
+      background: radial-gradient(circle, rgba(139,92,246,0.065) 0%, transparent 70%);
+    }
+    .depth-blob-3 {
+      width: 400px; height: 400px;
+      top: 40%; left: 35%;
+      background: radial-gradient(circle, rgba(0,80,220,0.035) 0%, transparent 70%);
     }
 
     /* ── CANVAS BG ── */
@@ -91,6 +150,7 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
+      opacity: 0.7;
     }
 
     /* ── NAV ── */
@@ -450,6 +510,53 @@
       letter-spacing: 0.04em;
     }
 
+    /* ── AI & TOOLS ── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .tool-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      backdrop-filter: blur(16px);
+      transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .tool-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,229,200,0.3);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 24px rgba(0,229,200,0.07);
+    }
+    .tool-icon {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.25rem;
+    }
+    .tool-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .tool-desc {
+      font-size: 0.85rem;
+      color: var(--white-dim);
+      line-height: 1.6;
+      flex: 1;
+    }
+    @media (max-width: 900px) {
+      .tools-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── WORK ── */
     .work-grid {
       display: grid;
@@ -462,14 +569,16 @@
       border: 1px solid var(--glass-border);
       border-radius: 16px;
       overflow: hidden;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
       display: flex;
       flex-direction: column;
-      transition: transform 0.3s, border-color 0.3s;
+      transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2);
     }
     .work-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       border-color: rgba(0,229,200,0.3);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 24px rgba(0,229,200,0.07);
     }
     .work-card-visual {
       position: relative;
@@ -711,10 +820,30 @@
 </head>
 <body>
 
-<!-- Cosmic nebula layers -->
-<div class="nebula nebula-1"></div>
-<div class="nebula nebula-2"></div>
-<div class="nebula nebula-3"></div>
+<!-- Dot grid -->
+<div class="dot-grid"></div>
+
+<!-- Parallax geometric layers -->
+<div class="parallax-bg" id="parallax-bg">
+  <div class="geo-layer" data-speed="0.07">
+    <div class="geo-ring geo-ring-1"></div>
+    <div class="geo-ring geo-ring-3"></div>
+    <div class="depth-blob depth-blob-1"></div>
+  </div>
+  <div class="geo-layer" data-speed="0.16">
+    <div class="geo-ring geo-ring-2"></div>
+    <div class="geo-ring geo-ring-4"></div>
+    <div class="geo-ring geo-ring-5"></div>
+    <div class="geo-cross geo-cross-1"></div>
+    <div class="geo-cross geo-cross-3"></div>
+    <div class="depth-blob depth-blob-3"></div>
+  </div>
+  <div class="geo-layer" data-speed="0.26">
+    <div class="depth-blob depth-blob-2"></div>
+    <div class="geo-cross geo-cross-2"></div>
+    <div class="geo-cross geo-cross-4"></div>
+  </div>
+</div>
 
 <!-- Custom cursor -->
 <div class="cursor" id="cursor"></div>
@@ -728,6 +857,7 @@
   <a href="#hero" class="nav-logo">Olivia's<span> Portfolio</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#ai-tools">AI & Tools</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -737,14 +867,12 @@
 <!-- ── HERO ── -->
 <section id="hero">
   <div class="hero-orb"></div>
-  <p class="hero-tag">Marketing · Product · AI-Enabled</p>
+  <p class="hero-tag">Seeking PMM &amp; PM Roles · AI-Enabled</p>
   <h1 class="hero-headline">
     Stories shape<br /><span class="accent">strategy.</span><br />
     Ideas become<br /><span class="accent">impact.</span>
   </h1>
-  <p class="hero-sub">
-    Cross-functional marketer with 5 years across B2B and B2C, transitioning into product. I care about how products create real value for users — and I use AI to learn and move faster.
-  </p>
+
   <div class="hero-actions">
     <a href="#work" class="btn-primary">View My Work</a>
     <a href="#contact" class="btn-ghost">
@@ -775,6 +903,35 @@
       <p>
         A website revamp project changed everything. Taking something old and abandoned and watching it come alive again for real users gave me a sense of fulfilment I hadn't felt before. That's when I understood what drives me: building things that actually matter to the people using them.
       </p>
+      <p>
+        I'm actively seeking roles in Product Marketing or Product Management — and looking to bring a marketer's instinct and an AI-enabled mindset to a product team.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── AI & TOOLS ── -->
+<section id="ai-tools">
+  <div class="reveal">
+    <p class="section-label">02 — AI &amp; Tools</p>
+    <h2 class="section-title">The tools behind the work</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-card reveal reveal-delay-1">
+      <div class="tool-icon">Generative AI</div>
+      <div class="tool-name">ChatGPT &amp; Copilot</div>
+      <div class="tool-desc">Content ideation, copywriting, image generation, and day-to-day research — used actively across projects at work.</div>
+    </div>
+    <div class="tool-card reveal reveal-delay-2">
+      <div class="tool-icon">Voice AI</div>
+      <div class="tool-name">ElevenLabs</div>
+      <div class="tool-desc">AI voiceover generation for video production — applied in corporate video projects to streamline production timelines.</div>
+    </div>
+    <div class="tool-card reveal reveal-delay-3">
+      <div class="tool-icon">Coding &amp; Planning</div>
+      <div class="tool-name">Claude</div>
+      <div class="tool-desc">Vibe coding, planning, and building — including this website, entirely self-taught.</div>
     </div>
   </div>
 </section>
@@ -869,8 +1026,8 @@
 <!-- ── WORK ── -->
 <section id="work">
   <div class="reveal">
-    <p class="section-label">02 — Selected Work</p>
-    <h2 class="section-title">What I've built</h2>
+    <p class="section-label">03 — Selected Work</p>
+    <h2 class="section-title">Work I've owned</h2>
     <div class="section-divider"></div>
   </div>
   <p class="work-sub-label reveal">Web &amp; Product</p>
@@ -907,6 +1064,7 @@
             <span class="work-tag">Messaging</span>
             <span class="work-tag">SEO</span>
             <span class="work-tag">UI/UX</span>
+            <span class="work-tag">ChatGPT</span>
           </div>
           <a href="https://www.eservhub.com" target="_blank" class="work-link">View site <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
@@ -930,6 +1088,8 @@
             <span class="work-tag">Content Strategy</span>
             <span class="work-tag">Brand</span>
             <span class="work-tag">Competitor Research</span>
+            <span class="work-tag">ChatGPT</span>
+            <span class="work-tag">Copilot</span>
           </div>
           <a href="https://www.linkedin.com/company/st-engineering-eservices/" target="_blank" class="work-link">View page <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
@@ -948,6 +1108,7 @@
             <span class="work-tag">Project Management</span>
             <span class="work-tag">Agency Management</span>
             <span class="work-tag">Cross-functional</span>
+            <span class="work-tag">ElevenLabs</span>
           </div>
           <a href="https://drive.google.com/file/d/1rLEiTtpZz___Z5zAACJC_euDYC-l5HME/view?usp=sharing" target="_blank" class="work-link">Watch video <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
@@ -1019,14 +1180,13 @@
         <span class="visual-label">CRM · Automation · B2C</span>
       </div>
       <div class="work-card-body">
-        <div class="work-title">CRM &amp; Lead Management (Zoho)</div>
+        <div class="work-title">CRM &amp; Lead Management</div>
         <div class="work-desc">Managed Zoho CRM for lead management and workflow automation in a B2C context. Designed event registration forms to capture and organise leads, and built automated post-event email workflows to streamline Sales team follow-up — reducing manual effort and improving turnaround time.</div>
         <div class="work-footer">
           <div class="work-tags">
             <span class="work-tag">Zoho CRM</span>
             <span class="work-tag">Workflow Automation</span>
             <span class="work-tag">Lead Management</span>
-            <span class="work-tag">B2C</span>
           </div>
         </div>
       </div>
@@ -1038,7 +1198,7 @@
 <section id="contact">
   <div class="contact-inner">
     <div class="reveal">
-      <p class="section-label">03 — Contact</p>
+      <p class="section-label">04 — Contact</p>
       <h2 class="section-title">Let's start a conversation.</h2>
       <div class="section-divider"></div>
     </div>
@@ -1068,106 +1228,97 @@
 </footer>
 
 <script>
-  /* ── STAR FIELD CANVAS ── */
+  /* ── GEOMETRIC NETWORK CANVAS ── */
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
-  let W, H, stars = [], shootingStars = [];
+  let W, H, nodes = [];
   const mouse = { x: -999, y: -999 };
 
   function resize() {
     W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
-    initStars();
+    initNodes();
   }
 
-  function initStars() {
-    stars = [];
-    const count = Math.min(Math.floor((W * H) / 7000), 280);
+  function initNodes() {
+    nodes = [];
+    const count = Math.min(Math.floor((W * H) / 16000), 65);
     for (let i = 0; i < count; i++) {
-      const isTeal   = Math.random() > 0.82;
-      const isViolet = !isTeal && Math.random() > 0.88;
-      stars.push({
-        x:             Math.random() * W,
-        y:             Math.random() * H,
-        size:          Math.random() * 1.6 + 0.2,
-        baseAlpha:     Math.random() * 0.55 + 0.1,
-        twinkleSpeed:  Math.random() * 0.9 + 0.3,
-        twinkleOffset: Math.random() * Math.PI * 2,
-        isGlow:        Math.random() > 0.86,
-        isTeal,
-        isViolet,
+      nodes.push({
+        x:      Math.random() * W,
+        y:      Math.random() * H,
+        vx:     (Math.random() - 0.5) * 0.28,
+        vy:     (Math.random() - 0.5) * 0.28,
+        size:   Math.random() * 1.4 + 0.4,
+        isTeal: Math.random() > 0.55,
       });
     }
   }
 
-  let t = 0;
-
-  function drawStars() {
+  function drawNetwork() {
     ctx.clearRect(0, 0, W, H);
-    t += 0.012;
+    const maxDist = 150;
 
-    stars.forEach(s => {
-      const twinkle  = Math.sin(t * s.twinkleSpeed + s.twinkleOffset) * 0.5 + 0.5;
-      const dist     = Math.hypot(mouse.x - s.x, mouse.y - s.y);
-      const influence = Math.max(0, 1 - dist / 260);
-      const alpha    = Math.min(1, s.baseAlpha * (0.3 + twinkle * 0.7) + influence * 0.4);
+    nodes.forEach(n => {
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    });
 
-      const color = s.isTeal ? `rgba(0,229,200,${alpha})`
-                  : s.isViolet ? `rgba(180,160,255,${alpha})`
-                  : `rgba(255,255,255,${alpha})`;
-
-      if (s.isGlow) {
-        const glowColor = s.isTeal   ? `rgba(0,229,200,${alpha * 0.55})`
-                        : s.isViolet ? `rgba(139,92,246,${alpha * 0.55})`
-                        : `rgba(200,200,255,${alpha * 0.35})`;
-        const grad = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.size * 6);
-        grad.addColorStop(0, glowColor);
-        grad.addColorStop(1, 'transparent');
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.size * 6, 0, Math.PI * 2);
-        ctx.fill();
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < maxDist) {
+          const alpha = (1 - dist / maxDist) * 0.12;
+          ctx.strokeStyle = `rgba(0,229,200,${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
       }
+      const mdx = mouse.x - nodes[i].x;
+      const mdy = mouse.y - nodes[i].y;
+      const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+      if (mdist < 180) {
+        const alpha = (1 - mdist / 180) * 0.28;
+        ctx.strokeStyle = `rgba(0,229,200,${alpha})`;
+        ctx.lineWidth = 0.7;
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.stroke();
+      }
+    }
 
-      ctx.fillStyle = color;
+    nodes.forEach(n => {
+      ctx.fillStyle = n.isTeal ? `rgba(0,229,200,0.45)` : `rgba(139,92,246,0.35)`;
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+      ctx.arc(n.x, n.y, n.size, 0, Math.PI * 2);
       ctx.fill();
     });
 
-    /* Occasional shooting star */
-    if (Math.random() < 0.004 && shootingStars.length < 3) {
-      shootingStars.push({
-        x:    Math.random() * W * 0.55,
-        y:    Math.random() * H * 0.4,
-        vx:   4.5 + Math.random() * 3,
-        vy:   2   + Math.random() * 2,
-        life: 1,
-      });
-    }
-    shootingStars = shootingStars.filter(ss => ss.life > 0);
-    shootingStars.forEach(ss => {
-      const tail = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.vx * 18, ss.y - ss.vy * 18);
-      tail.addColorStop(0, `rgba(255,255,255,${ss.life * 0.85})`);
-      tail.addColorStop(1, 'transparent');
-      ctx.strokeStyle = tail;
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.moveTo(ss.x, ss.y);
-      ctx.lineTo(ss.x - ss.vx * 18, ss.y - ss.vy * 18);
-      ctx.stroke();
-      ss.x    += ss.vx;
-      ss.y    += ss.vy;
-      ss.life -= 0.026;
-    });
+    requestAnimationFrame(drawNetwork);
   }
-
-  function loop() { drawStars(); requestAnimationFrame(loop); }
 
   window.addEventListener('resize', resize);
   window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
   resize();
-  loop();
+  drawNetwork();
+
+  /* ── PARALLAX SCROLL ── */
+  const geoLayers = document.querySelectorAll('.geo-layer');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    geoLayers.forEach(layer => {
+      const speed = parseFloat(layer.dataset.speed) || 0.1;
+      layer.style.transform = `translateY(${scrollY * speed}px)`;
+    });
+  }, { passive: true });
 
   /* ── NAV SCROLL ── */
   const navbar = document.getElementById('navbar');
