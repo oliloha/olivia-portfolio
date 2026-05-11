@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+op0-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -202,11 +202,35 @@
       display: flex;
       justify-content: center;
       align-items: stretch;
+      min-height: 380px;
+    }
+    .about-photo-bg {
+      width: 320px;
+      height: 100%;
+      min-height: 380px;
+      position: relative;
+      flex-shrink: 0;
+      overflow: visible;
+    }
+    .about-photo-img-wrap {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .about-photo-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+      display: block;
     }
     @media (max-width: 900px) {
       .hero-doodle-2, .hero-doodle-4, .hero-doodle-6, .hero-doodle-8 { display: none; }
-      .about-photo { justify-content: flex-start; }
+      .about-photo { justify-content: flex-start; order: -1; }
       .hero-photo-placeholder { width: 200px; height: 240px; }
+      .about-photo-bg { width: 100%; height: auto; min-height: unset; aspect-ratio: 4 / 5; }
     }
 
     .hero-tag {
@@ -388,16 +412,16 @@
     .about-text p strong { color: var(--ink); font-weight: 600; }
     .photo-tape {
       position: absolute;
-      width: 74px;
-      height: 16px;
+      width: 120px;
+      height: 18px;
       border-radius: 2px;
       background-image: radial-gradient(circle, rgba(44,40,37,0.22) 1.2px, transparent 1.2px);
       background-size: 6px 6px;
       z-index: 2;
       pointer-events: none;
     }
-    .photo-tape-1 { top: 10px;  left: -8px;  background-color: var(--tape-peach);  transform: rotate(-42deg); }
-    .photo-tape-2 { bottom: 10px; right: -8px; background-color: var(--tape-sky);   transform: rotate(-42deg); }
+    .photo-tape-1 { top: 14px;  left: -32px; background-color: var(--tape-peach); transform: rotate(-42deg); }
+    .photo-tape-2 { bottom: 14px; right: -32px; background-color: var(--tape-sky); transform: rotate(-42deg); }
     .about-text .accent {
       position: relative;
       display: inline;
@@ -576,7 +600,15 @@
     .work-desc {
       font-size: 0.875rem;
       color: var(--ink-2);
-      line-height: 1.75;
+      line-height: 1.6;
+      padding-left: 1.1rem;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .work-desc li {
+      list-style: disc;
     }
     .work-footer {
       display: flex;
@@ -646,7 +678,11 @@
       margin-top: 3rem;
       display: flex;
       gap: 1.2rem;
-      flex-wrap: wrap;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+    @media (min-width: 640px) {
+      .contact-links { flex-direction: row; flex-wrap: wrap; }
     }
     .contact-link {
       display: flex;
@@ -852,7 +888,7 @@
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .tools-grid { grid-template-columns: 1fr; }
       .work-grid { grid-template-columns: 1fr; }
-      .contact-links { flex-direction: column; }
+      .contact-link { width: 100%; }
       footer { padding: 1.5rem 1.5rem; }
     }
     @media (max-width: 520px) {
@@ -1011,7 +1047,10 @@
       </p>
     </div>
     <div class="about-photo reveal reveal-delay-3">
-      <div style="width: 320px; height: 100%; border-radius: 6px; background-image: url('olivia\'s photo (2).JPG'); background-size: cover; background-position: center 55%; position: relative; overflow: visible;">
+      <div class="about-photo-bg">
+        <div class="about-photo-img-wrap">
+          <img src="olivia-photo.jpg" alt="Olivia" />
+        </div>
         <span class="photo-tape photo-tape-1"></span>
         <span class="photo-tape photo-tape-2"></span>
       </div>
@@ -1046,7 +1085,7 @@
         <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
       </div>
       <div class="skill-name">Brand Strategy</div>
-      <div class="skill-desc">Building identities that resonate — from positioning and messaging frameworks to visual language and voice guidelines.</div>
+      <div class="skill-desc">Building identities that resonate, from positioning and messaging frameworks to visual language and voice guidelines.</div>
       <div class="skill-tags">
         <span class="skill-tag">Positioning</span>
         <span class="skill-tag">Messaging</span>
@@ -1058,7 +1097,7 @@
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
       </div>
       <div class="skill-name">Product Marketing</div>
-      <div class="skill-desc">GTM strategy, competitive positioning, launch playbooks, and sales enablement that gets products off the ground.</div>
+      <div class="skill-desc">GTM strategy, competitive positioning, launch playbooks andsales enablement that gets products off the ground.</div>
       <div class="skill-tags">
         <span class="skill-tag">GTM</span>
         <span class="skill-tag">Launch Strategy</span>
@@ -1070,7 +1109,7 @@
         <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
       </div>
       <div class="skill-name">Content Strategy</div>
-      <div class="skill-desc">Editorial frameworks, thought leadership, content calendars, and distribution strategies that build authority and compound over time.</div>
+      <div class="skill-desc">Editorial frameworks, thought leadership, content calendars anddistribution strategies that build authority and compound over time.</div>
       <div class="skill-tags">
         <span class="skill-tag">Editorial</span>
         <span class="skill-tag">Thought Leadership</span>
@@ -1082,7 +1121,7 @@
         <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
       </div>
       <div class="skill-name">Analytics &amp; Insights</div>
-      <div class="skill-desc">Turning raw data into strategic decisions. Dashboard design, attribution modelling, and performance reporting.</div>
+      <div class="skill-desc">Turning raw data into strategic decisions. Dashboard design, attribution modelling andperformance reporting.</div>
       <div class="skill-tags">
         <span class="skill-tag">GA4</span>
         <span class="skill-tag">Attribution</span>
@@ -1094,7 +1133,7 @@
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
       </div>
       <div class="skill-name">Digital Campaigns</div>
-      <div class="skill-desc">End-to-end campaign management across paid, owned, and earned channels — integrated and always-on.</div>
+      <div class="skill-desc">End-to-end campaign management across paid, owned andearned channels, integrated and always-on.</div>
       <div class="skill-tags">
         <span class="skill-tag">Meta</span>
         <span class="skill-tag">Google</span>
@@ -1178,7 +1217,10 @@
       </div>
       <div class="work-card-body">
         <div class="work-title">TDSG Website Revamp</div>
-        <div class="work-desc">Volunteered to lead a full website overhaul addressing outdated service content and a user experience that no longer reflected current offerings. Owned content restructuring and messaging, collaborated with UI/UX and software engineer, and implemented SEO improvements across the site.</div>
+        <ul class="work-desc">
+          <li>Led full website overhaul: content restructuring, messaging andUX</li>
+          <li>Drove SEO improvements across all pages</li>
+        </ul>
         <div class="work-footer">
           <div class="work-tags">
             <span class="work-tag">Content Strategy</span>
@@ -1192,11 +1234,15 @@
     <div class="work-card card-2 reveal reveal-delay-2">
       <div class="work-card-visual">
         <div class="visual-bg"></div>
-        <span class="visual-label">Website Revamp · Ongoing</span>
+        <span class="visual-label">Website Repositioning · Ongoing</span>
       </div>
       <div class="work-card-body">
         <div class="work-title">eServHub Website Revamp</div>
-        <div class="work-desc">The website had outdated service content, an inconsistent page structure, and a look that no longer reflected the company's AI-driven positioning. I led the refresh, defining a consistent content framework across pages (what the service is, how it helps, why choose us) and working with stakeholders to align messaging with current offerings. Several service pages have been refreshed and are now live, with the rest in progress.</div>
+        <ul class="work-desc">
+          <li>Defined a consistent content framework across all service pages</li>
+          <li>Aligned messaging with the company's AI-driven positioning</li>
+          <li>Multiple pages live; full rollout in progress</li>
+        </ul>
         <div class="work-footer">
           <div class="work-tags">
             <span class="work-tag">Content Strategy</span>
@@ -1219,8 +1265,11 @@
         <span class="visual-label">Social Media · B2B &amp; B2C · Organic &amp; Paid</span>
       </div>
       <div class="work-card-body">
-        <div class="work-title">LinkedIn Content Repositioning</div>
-        <div class="work-desc">Led a full repositioning of the company's LinkedIn content strategy. Conducted competitor research, redefined content pillars, and developed new design concepts and messaging frameworks to refresh the brand's social presence. Grew followers by over 150% and increased engagement rate by 20% in 2025.</div>
+        <div class="work-title">Social Media Strategy</div>
+        <ul class="work-desc">
+          <li>Redefined content pillars, design direction andmessaging framework</li>
+          <li>Grew followers 150%+ and engagement rate 20% in 2025</li>
+        </ul>
         <div class="work-footer">
           <div class="work-tags">
             <span class="work-tag">Social Media</span>
@@ -1237,11 +1286,35 @@
     <div class="work-card card-2 reveal reveal-delay-2">
       <div class="work-card-visual">
         <div class="visual-bg"></div>
+        <span class="visual-label">Event Marketing · B2B</span>
+      </div>
+      <div class="work-card-body">
+        <div class="work-title">Event Marketing</div>
+        <ul class="work-desc">
+          <li>Co-led 2 corporate events end-to-end: agency, logistics, on-site execution</li>
+          <li>5,000-6,000 visitors collectively; 100+ leads generated</li>
+        </ul>
+        <div class="work-footer">
+          <div class="work-tags">
+            <span class="work-tag">Event Marketing</span>
+            <span class="work-tag">Project Management</span>
+            <span class="work-tag">Agency Management</span>
+            <span class="work-tag">Cross-functional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="work-card card-3 reveal reveal-delay-3">
+      <div class="work-card-visual">
+        <div class="visual-bg"></div>
         <span class="visual-label">Video Production · B2B · End-to-end</span>
       </div>
       <div class="work-card-body">
-        <div class="work-title">eServ Corporate Video</div>
-        <div class="work-desc">Led an end-to-end corporate video production with an agency partner, from storyboard development and concept creation through to operational planning and final delivery. Took over full project ownership two weeks before the scheduled shoot, resolving venue, scheduling, and cross-team coordination under tight timelines to deliver on time.</div>
+        <div class="work-title">Corporate Video Production</div>
+        <ul class="work-desc">
+          <li>Delivered corporate video on schedule, taking full ownership 2 weeks before shoot</li>
+          <li>Managed agency, storyboard, venue and cross-team coordination</li>
+        </ul>
         <div class="work-footer">
           <div class="work-tags">
             <span class="work-tag">Project Management</span>
@@ -1253,56 +1326,24 @@
         </div>
       </div>
     </div>
-    <div class="work-card card-3 reveal reveal-delay-3">
+    <div class="work-card card-4 reveal reveal-delay-4">
       <div class="work-card-visual">
         <div class="visual-bg"></div>
-        <span class="visual-label">Event Marketing · B2B · Brand</span>
+        <span class="visual-label">Brand · Events · Merchandise · B2B</span>
       </div>
       <div class="work-card-body">
-        <div class="work-title">Marketing Collateral for Events</div>
-        <div class="work-desc">Designed brochures and pull-up banners for four business centres, ensuring alignment with corporate brand guidelines. Worked closely with internal teams to refine service messaging and deliver event-ready collateral.</div>
+        <div class="work-title">Brand Design &amp; Collateral</div>
+        <ul class="work-desc">
+          <li>Designed event collateral (brochures, pull-up banners) for 4 business centres</li>
+          <li>Designed corporate jacket worn by 800+ employees company-wide</li>
+        </ul>
         <div class="work-footer">
           <div class="work-tags">
             <span class="work-tag">Brand</span>
             <span class="work-tag">Design</span>
             <span class="work-tag">Adobe Illustrator</span>
-            <span class="work-tag">Cross-functional</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="work-card card-4 reveal reveal-delay-4">
-      <div class="work-card-visual">
-        <div class="visual-bg"></div>
-        <span class="visual-label">Internal Branding · B2B · Merchandise</span>
-      </div>
-      <div class="work-card-body">
-        <div class="work-title">eServ Corporate Jacket</div>
-        <div class="work-desc">Designed the corporate jacket for eServ as part of an internal branding campaign. The design was rolled out to over 800 employees across the organisation, making it one of the most visible brand touchpoints company-wide.</div>
-        <div class="work-footer">
-          <div class="work-tags">
-            <span class="work-tag">Brand</span>
-            <span class="work-tag">Design</span>
             <span class="work-tag">Canva</span>
             <span class="work-tag">Internal Comms</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="work-card card-5 reveal reveal-delay-1">
-      <div class="work-card-visual">
-        <div class="visual-bg"></div>
-        <span class="visual-label">Event Marketing · B2B</span>
-      </div>
-      <div class="work-card-body">
-        <div class="work-title">Corporate Events (2025)</div>
-        <div class="work-desc">Co-led two corporate events, managing end-to-end logistics from liaison with event organisers and agency partners to on-site coordination and execution. Handled corporate gift sourcing, design, and production. The events collectively drew 5,000–6,000 visitors and generated 100+ leads.</div>
-        <div class="work-footer">
-          <div class="work-tags">
-            <span class="work-tag">Event Marketing</span>
-            <span class="work-tag">Project Management</span>
-            <span class="work-tag">Agency Management</span>
-            <span class="work-tag">Cross-functional</span>
           </div>
         </div>
       </div>
@@ -1318,7 +1359,11 @@
       </div>
       <div class="work-card-body">
         <div class="work-title">CRM &amp; Lead Management</div>
-        <div class="work-desc">The marketing team was spending significant time on manual data entry after every event and sending out post-event emails one by one manually. I identified the bottleneck and proposed a CRM-based fix, designing event registration forms that synced leads directly into Zoho CRM and automating post-event email sequences. Result: significant time saved on post-event admin.</div>
+        <ul class="work-desc">
+          <li>Identified manual post-event bottleneck; built a Zoho CRM-based fix</li>
+          <li>Automated lead capture forms and post-event email sequences</li>
+          <li>Cut post-event admin time significantly</li>
+        </ul>
         <div class="work-footer">
           <div class="work-tags">
             <span class="work-tag">Zoho CRM</span>
@@ -1359,7 +1404,7 @@
     <div class="tool-card reveal reveal-delay-1">
       <div class="tool-icon">Generative AI</div>
       <div class="tool-name">ChatGPT &amp; Copilot</div>
-      <div class="tool-desc">Content ideation, copywriting, image generation, and day-to-day research. Used actively across projects at work.</div>
+      <div class="tool-desc">Content ideation, copywriting, image generation andday-to-day research. Used actively across projects at work.</div>
     </div>
     <div class="tool-card reveal reveal-delay-2">
       <div class="tool-icon">Voice AI</div>
@@ -1369,7 +1414,7 @@
     <div class="tool-card reveal reveal-delay-3">
       <div class="tool-icon">Coding &amp; Planning</div>
       <div class="tool-name">Claude</div>
-      <div class="tool-desc">Vibe coding, planning, and building. Including this website, entirely self-taught.</div>
+      <div class="tool-desc">Vibe coding, planning andbuilding. Including this website, entirely self-taught.</div>
     </div>
   </div>
 </section>
