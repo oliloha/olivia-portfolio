@@ -43,7 +43,7 @@ op0-<!DOCTYPE html>
       --glass-border:   rgba(44,40,37,0.15);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; font-size: 115%; }
 
     body {
       background-color: var(--paper);
@@ -202,12 +202,12 @@ op0-<!DOCTYPE html>
       display: flex;
       justify-content: center;
       align-items: stretch;
-      min-height: 380px;
+      min-height: 437px;
     }
     .about-photo-bg {
-      width: 320px;
+      width: 368px;
       height: 100%;
-      min-height: 380px;
+      min-height: 437px;
       position: relative;
       flex-shrink: 0;
       overflow: visible;
@@ -215,7 +215,7 @@ op0-<!DOCTYPE html>
     .about-photo-img-wrap {
       width: 100%;
       height: 100%;
-      min-height: 380px;
+      min-height: 437px;
       border-radius: 6px;
       overflow: hidden;
     }
@@ -524,48 +524,104 @@ op0-<!DOCTYPE html>
     .work-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1.8rem;
+      gap: 80px 1.8rem;
       margin-top: 2rem;
     }
     .work-card {
-      background: var(--white);
       border-radius: 4px;
       overflow: visible;
+      position: relative;
+      height: 400px;
+      perspective: 1200px;
+      cursor: pointer;
+    }
+
+    .work-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .work-card.flipped .work-card-inner { transform: rotateY(180deg); }
+
+    .work-card-front,
+    .work-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 4px;
+      background: var(--white);
+      box-shadow: 3px 3px 10px rgba(44,40,37,0.12);
       display: flex;
       flex-direction: column;
-      position: relative;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 3px 3px 10px rgba(44,40,37,0.12);
     }
-    .work-card:hover { transform: translateY(-4px); box-shadow: 6px 8px 20px rgba(44,40,37,0.18); }
+    .work-card-back { transform: rotateY(180deg); overflow: hidden; }
 
-    .work-card::before {
+    .work-card:nth-child(1) .work-card-front::before { background-color: var(--tape-peach);    transform: rotate(-1deg); }
+    .work-card:nth-child(2) .work-card-front::before { background-color: var(--tape-sky);      transform: rotate(1.2deg); }
+    .work-card:nth-child(3) .work-card-front::before { background-color: var(--tape-pink);     transform: rotate(-0.8deg); }
+    .work-card:nth-child(4) .work-card-front::before { background-color: var(--tape-sage);     transform: rotate(1deg); }
+    .work-card:nth-child(5) .work-card-front::before { background-color: var(--tape-lavender); transform: rotate(-1.2deg); }
+    .work-card-front::before {
       content: '';
       position: absolute;
-      top: -9px;
-      left: 24px;
-      width: 72px;
-      height: 18px;
+      top: -9px; left: 24px;
+      width: 72px; height: 18px;
       border-radius: 2px;
       background-image: radial-gradient(circle, rgba(44,40,37,0.22) 1.2px, transparent 1.2px);
       background-size: 6px 6px;
       z-index: 2;
     }
-    .work-card:nth-child(1)::before { background-color: var(--tape-peach);   transform: rotate(-1deg); }
-    .work-card:nth-child(2)::before { background-color: var(--tape-sky);     transform: rotate(1.2deg); }
-    .work-card:nth-child(3)::before { background-color: var(--tape-pink);    transform: rotate(-0.8deg); }
-    .work-card:nth-child(4)::before { background-color: var(--tape-sage);    transform: rotate(1deg); }
-    .work-card:nth-child(5)::before { background-color: var(--tape-lavender);transform: rotate(-1.2deg); }
 
-    .work-card-visual {
-      height: 52px;
-      background: var(--paper-2);
+    .work-card-preview {
+      flex: 1;
+      background: var(--paper-3);
       border-bottom: 1px solid var(--ink-faint);
       display: flex;
-      align-items: flex-end;
-      padding: 0.7rem 1.4rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px 4px 0 0;
+      overflow: hidden;
     }
-    .visual-bg { display: none; }
+    .work-card-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .work-card-preview-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--ink-dim);
+      opacity: 0.35;
+    }
+    .work-card-preview-icon span {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+    }
+    .work-card-front-info {
+      padding: 0.9rem 1.2rem 0.75rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-shrink: 0;
+      min-width: 0;
+    }
+    .work-card-front-info .work-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
     .visual-label {
       font-family: var(--font-mono);
       font-size: 0.58rem;
@@ -573,16 +629,39 @@ op0-<!DOCTYPE html>
       color: var(--ink-dim);
       text-transform: uppercase;
     }
+    .flip-hint {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--ink);
+      padding: 0.5rem 1.1rem;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .flip-back-hint {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: var(--ink-dim);
+      opacity: 0.5;
+      letter-spacing: 0.05em;
+      text-align: right;
+      margin-bottom: 0.25rem;
+      flex-shrink: 0;
+    }
     .work-card-body {
-      padding: 1.4rem;
+      padding: 1.2rem 1.4rem 1.4rem;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.6rem;
       flex: 1;
+      overflow-y: auto;
     }
     .work-title {
       font-family: var(--font-hand);
-      font-size: 1.3rem;
+      font-size: 1.43rem;
       font-weight: 700;
       color: var(--ink);
       line-height: 1.2;
@@ -624,30 +703,40 @@ op0-<!DOCTYPE html>
     .work-tag:nth-child(4n+4) { background: var(--lavender); }
 
     .work-link {
-      font-family: var(--font-hand);
-      font-size: 1rem;
-      font-weight: 700;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
       color: var(--ink);
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 0.3rem;
-      white-space: nowrap;
-      transition: opacity 0.2s;
+      justify-content: center;
+      gap: 0.4rem;
+      width: 100%;
+      padding: 0.6rem 1rem;
+      border: 1.5px solid var(--ink);
+      border-radius: 4px;
+      box-shadow: 3px 3px 0 rgba(44,40,37,0.15);
+      margin-top: 0.5rem;
+      transition: transform 0.15s, box-shadow 0.15s;
     }
-    .work-link:hover { opacity: 0.65; }
+    .work-link:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 rgba(44,40,37,0.15);
+    }
 
     .work-sub-label {
       font-family: var(--font-hand);
       font-size: 1.15rem;
       font-weight: 700;
       color: var(--ink-2);
-      margin-top: 3.5rem;
+      margin-top: 70px;
       margin-bottom: 0.5rem;
       padding-left: 0.75rem;
       border-left: 3px solid var(--peach);
     }
     @media (max-width: 900px) { .work-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .cert-grid { grid-template-columns: 1fr; } }
 
     /* ── CONTACT ── */
     #contact {
@@ -864,6 +953,191 @@ op0-<!DOCTYPE html>
       margin-top: 0.4rem;
     }
 
+    /* ── EXPERIENCE ── */
+    #experience { position: relative; z-index: 1; }
+    .exp-section-label {
+      font-family: var(--font-hand);
+      font-size: 1.518rem;
+      font-weight: 700;
+      color: var(--ink-2);
+      margin-top: 70px;
+      margin-bottom: 1.5rem;
+      padding-left: 0.75rem;
+      border-left: 3px solid var(--peach);
+    }
+    .exp-section-label.cert-label { border-left-color: var(--sky); margin-top: 70px; }
+
+    /* Horizontal timeline */
+    .h-timeline-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 2.5rem;
+      padding-bottom: 1.5rem;
+    }
+    .h-timeline {
+      display: flex;
+      position: relative;
+      width: 100%;
+      margin: 0;
+      padding: 0 2rem;
+      align-items: center;
+    }
+    .h-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      top: 50%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--ink-faint) 4%, var(--ink-faint) 96%, transparent);
+      transform: translateY(-50%);
+    }
+    .h-timeline-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 220px;
+      padding: 0 4.3rem;
+    }
+    .h-timeline-upper {
+      height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 0.75rem;
+      gap: 0.5rem;
+    }
+    .h-timeline-lower {
+      height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      padding-top: 0.75rem;
+      gap: 0.5rem;
+    }
+    .h-timeline-node {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2.5px solid var(--ink);
+      z-index: 1;
+      flex-shrink: 0;
+    }
+    .h-timeline-node.node-work { background: var(--peach); }
+    .h-timeline-node.node-edu  { background: var(--lavender); }
+    .h-timeline-role {
+      font-family: var(--font-hand);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .h-timeline-company {
+      font-size: 0.8rem;
+      color: var(--ink-2);
+    }
+    .h-timeline-date {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: var(--ink-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.15rem;
+    }
+
+    /* Experience cards */
+    .exp-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 66.67%;
+    }
+    .exp-card {
+      padding: 1.1rem 1.3rem;
+      background: var(--paper-2);
+      border-radius: 4px;
+      border-left: 3px solid var(--peach);
+      box-shadow: 2px 2px 0 rgba(44,40,37,0.08);
+    }
+    .exp-card.edu-card { border-left-color: var(--lavender); }
+    .exp-card-role {
+      font-family: var(--font-hand);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .exp-card-company {
+      font-size: 0.875rem;
+      color: var(--ink-2);
+      margin-top: 0.3rem;
+    }
+    .exp-card-date {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--ink-dim);
+      letter-spacing: 0.08em;
+      margin-top: 0.4rem;
+      text-transform: uppercase;
+    }
+
+    /* Certifications */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 66.67%;
+    }
+    .cert-item {
+      padding: 0.9rem 1.1rem;
+      background: var(--paper-2);
+      border-radius: 4px;
+      border-left: 3px solid var(--sky);
+      box-shadow: 2px 2px 0 rgba(44,40,37,0.08);
+      text-decoration: none;
+      display: block;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .cert-item:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 rgba(44,40,37,0.15);
+    }
+    .cert-view {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-align: center;
+      margin-top: 0.9rem;
+      padding: 0.5rem 1rem;
+      border: 1.5px solid var(--ink);
+      border-radius: 4px;
+      box-shadow: 3px 3px 0 rgba(44,40,37,0.15);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .cert-item:hover .cert-view {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 rgba(44,40,37,0.15);
+    }
+    .cert-name {
+      font-family: var(--font-hand);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .cert-issuer {
+      font-family: var(--font-main);
+      font-size: 0.875rem;
+      color: var(--ink-2);
+      letter-spacing: 0;
+      margin-top: 0.3rem;
+      text-transform: none;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
@@ -927,6 +1201,7 @@ op0-<!DOCTYPE html>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience &amp; Education</a></li>
     <li><a href="#ai-tools">AI & Tools</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -938,6 +1213,7 @@ op0-<!DOCTYPE html>
 <div class="nav-mobile-menu" id="nav-mobile-menu">
   <a href="#about"   onclick="closeMobileMenu()">About</a>
   <a href="#work"    onclick="closeMobileMenu()">Work</a>
+  <a href="#experience" onclick="closeMobileMenu()">Experience &amp; Education</a>
   <a href="#ai-tools" onclick="closeMobileMenu()">AI &amp; Tools</a>
   <a href="#contact" onclick="closeMobileMenu()">Contact</a>
   <a href="#contact" class="nav-mobile-cta" onclick="closeMobileMenu()">Let's Talk</a>
@@ -1201,47 +1477,65 @@ op0-<!DOCTYPE html>
   <p class="work-sub-label reveal">Web &amp; Product</p>
   <div class="work-grid">
     <div class="work-card card-1 reveal reveal-delay-1">
-      <div class="work-card-visual">
-        <div class="visual-bg"></div>
-        <span class="visual-label">Website Revamp · Site Closed</span>
-      </div>
-      <div class="work-card-body">
-        <div class="work-title">TDSG Website Revamp</div>
-        <ul class="work-desc">
-          <li>Led a full overhaul of an outdated site across 10+ pages</li>
-          <li>Owned content strategy, messaging, UX and on-page SEO end-to-end</li>
-          <li>Partnered with UI/UX and service & product owners to deliver</li>
-        </ul>
-        <div class="work-footer">
-          <div class="work-tags">
-            <span class="work-tag">Content Strategy</span>
-            <span class="work-tag">SEO</span>
-            <span class="work-tag">UI/UX</span>
-            <span class="work-tag">Cross-functional</span>
+      <div class="work-card-inner">
+        <div class="work-card-front">
+          <div class="work-card-preview">
+            <img src="TDSG%20website.png" alt="TDSG Website Revamp" />
+          </div>
+          <div class="work-card-front-info">
+            <div class="work-title">TDSG Website Revamp</div>
+            <span class="flip-hint">See details →</span>
+          </div>
+        </div>
+        <div class="work-card-back">
+          <div class="work-card-body">
+            <span class="flip-back-hint">↺ tap to close</span>
+            <ul class="work-desc">
+              <li>Led a full overhaul of an outdated site across 10+ pages</li>
+              <li>Owned content strategy, messaging, UX and on-page SEO end-to-end</li>
+              <li>Partnered with UI/UX and service & product owners to deliver</li>
+            </ul>
+            <div class="work-footer">
+              <div class="work-tags">
+                <span class="work-tag">Content Strategy</span>
+                <span class="work-tag">SEO</span>
+                <span class="work-tag">UI/UX</span>
+                <span class="work-tag">Cross-functional</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="work-card card-2 reveal reveal-delay-2">
-      <div class="work-card-visual">
-        <div class="visual-bg"></div>
-        <span class="visual-label">Website Revamp · Ongoing</span>
-      </div>
-      <div class="work-card-body">
-        <div class="work-title">eServHub Website Revamp</div>
-        <ul class="work-desc">
-          <li>Defined a consistent content framework across all service pages</li>
-          <li>Refreshed messaging and visual direction to reflect the company's tech-driven positioning</li>
-          <li>Developed full-funnel strategy and project roadmap, now leading agency selection for full-scale revamp</li>
-        </ul>
-        <div class="work-footer">
-          <div class="work-tags">
-            <span class="work-tag">Content Strategy</span>
-            <span class="work-tag">Messaging</span>
-            <span class="work-tag">SEO</span>
-            <span class="work-tag">Full-funnel Strategy</span>
+      <div class="work-card-inner">
+        <div class="work-card-front">
+          <div class="work-card-preview">
+            <img src="eservhub%20-%20CX.png" alt="eServHub Website Revamp" />
           </div>
-          <a href="https://www.eservhub.com" target="_blank" class="work-link">View site <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <div class="work-card-front-info">
+            <div class="work-title">eServHub Website Revamp</div>
+            <span class="flip-hint">See details →</span>
+          </div>
+        </div>
+        <div class="work-card-back">
+          <div class="work-card-body">
+            <span class="flip-back-hint">↺ tap to close</span>
+            <ul class="work-desc">
+              <li>Defined a consistent content framework across all service pages</li>
+              <li>Refreshed messaging and visual direction to reflect the company's tech-driven positioning</li>
+              <li>Developed full-funnel strategy and project roadmap, now leading agency selection for full-scale revamp</li>
+            </ul>
+            <div class="work-footer">
+              <div class="work-tags">
+                <span class="work-tag">Content Strategy</span>
+                <span class="work-tag">Messaging</span>
+                <span class="work-tag">SEO</span>
+                <span class="work-tag">Full-funnel Strategy</span>
+              </div>
+              <a href="https://www.eservhub.com" target="_blank" class="work-link">View site <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1250,90 +1544,152 @@ op0-<!DOCTYPE html>
   <p class="work-sub-label reveal">Campaigns &amp; Projects</p>
   <div class="work-grid">
     <div class="work-card card-1 reveal reveal-delay-1">
-      <div class="work-card-visual">
-        <div class="visual-bg"></div>
-        <span class="visual-label">Social Media · B2B &amp; B2C · Organic &amp; Paid</span>
-      </div>
-      <div class="work-card-body">
-        <div class="work-title">Social Media Strategy</div>
-        <ul class="work-desc">
-          <li>Redefined content pillars, design direction and messaging framework</li>
-          <li>Grew followers 150%+ and engagement rate 20% in 2025</li>
-        </ul>
-        <div class="work-footer">
-          <div class="work-tags">
-            <span class="work-tag">Social Media</span>
-            <span class="work-tag">Content Strategy</span>
-            <span class="work-tag">Brand</span>
-            <span class="work-tag">Competitor Research</span>
-            <span class="work-tag">ChatGPT</span>
-            <span class="work-tag">Copilot</span>
+      <div class="work-card-inner">
+        <div class="work-card-front">
+          <div class="work-card-preview">
+            <img src="website%20analytics.jpeg" alt="Website Analytics &amp; Reporting" />
           </div>
-          <a href="https://www.linkedin.com/company/st-engineering-eservices/" target="_blank" class="work-link">View page <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <div class="work-card-front-info">
+            <div class="work-title">Website Analytics &amp; Reporting</div>
+            <span class="flip-hint">See details →</span>
+          </div>
+        </div>
+        <div class="work-card-back">
+          <div class="work-card-body">
+            <span class="flip-back-hint">↺ tap to close</span>
+            <ul class="work-desc">
+              <li>Grew organic traffic 20% within 1 year through data-driven content and SEO improvements</li>
+              <li>Built monthly reports tracking page views, traffic sources, bounce rate and conversions</li>
+              <li>Implemented UTM parameters to attribute traffic by source, informing content and social media strategy</li>
+            </ul>
+            <div class="work-footer">
+              <div class="work-tags">
+                <span class="work-tag">HubSpot</span>
+                <span class="work-tag">UTM Tracking</span>
+                <span class="work-tag">Data Reporting</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="work-card card-2 reveal reveal-delay-2">
-      <div class="work-card-visual">
-        <div class="visual-bg"></div>
-        <span class="visual-label">Event Marketing · B2B</span>
-      </div>
-      <div class="work-card-body">
-        <div class="work-title">Event Marketing</div>
-        <ul class="work-desc">
-          <li>Co-led 2 corporate events end-to-end: agency, logistics, on-site execution</li>
-          <li>5,000-6,000 visitors collectively; 100+ leads generated</li>
-        </ul>
-        <div class="work-footer">
-          <div class="work-tags">
-            <span class="work-tag">Event Marketing</span>
-            <span class="work-tag">Project Management</span>
-            <span class="work-tag">Agency Management</span>
-            <span class="work-tag">Cross-functional</span>
+      <div class="work-card-inner">
+        <div class="work-card-front">
+          <div class="work-card-preview">
+            <img src="LinkedIn%20posts.png" alt="Social Media Strategy" />
+          </div>
+          <div class="work-card-front-info">
+            <div class="work-title">Social Media Strategy</div>
+            <span class="flip-hint">See details →</span>
+          </div>
+        </div>
+        <div class="work-card-back">
+          <div class="work-card-body">
+            <span class="flip-back-hint">↺ tap to close</span>
+            <ul class="work-desc">
+              <li>Redefined content pillars, design direction and messaging framework</li>
+              <li>Drove end-to-end content production across 2 business arms: ideation, copywriting, design and blog articles</li>
+              <li>Grew followers 150%+ and engagement rate 20% in 2025</li>
+            </ul>
+            <div class="work-footer">
+              <div class="work-tags">
+                <span class="work-tag">Social Media</span>
+                <span class="work-tag">Content Strategy</span>
+                <span class="work-tag">Competitor Research</span>
+              </div>
+              <a href="https://www.linkedin.com/company/st-engineering-eservices/" target="_blank" class="work-link">View page <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="work-card card-3 reveal reveal-delay-3">
-      <div class="work-card-visual">
-        <div class="visual-bg"></div>
-        <span class="visual-label">Video Production · B2B · End-to-end</span>
-      </div>
-      <div class="work-card-body">
-        <div class="work-title">Corporate Video Production</div>
-        <ul class="work-desc">
-          <li>Delivered corporate video on schedule, taking full ownership 2 weeks before shoot</li>
-          <li>Managed agency, storyboard, venue and cross-team coordination</li>
-        </ul>
-        <div class="work-footer">
-          <div class="work-tags">
-            <span class="work-tag">Project Management</span>
-            <span class="work-tag">Agency Management</span>
-            <span class="work-tag">Cross-functional</span>
-            <span class="work-tag">ElevenLabs</span>
+      <div class="work-card-inner">
+        <div class="work-card-front">
+          <div class="work-card-preview">
+            <img src="ABS%202025.jpeg" alt="Event Marketing" />
           </div>
-          <a href="https://drive.google.com/file/d/1rLEiTtpZz___Z5zAACJC_euDYC-l5HME/view?usp=sharing" target="_blank" class="work-link">Watch video <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <div class="work-card-front-info">
+            <div class="work-title">Event Marketing</div>
+            <span class="flip-hint">See details →</span>
+          </div>
+        </div>
+        <div class="work-card-back">
+          <div class="work-card-body">
+            <span class="flip-back-hint">↺ tap to close</span>
+            <ul class="work-desc">
+              <li>Co-led 2 corporate events end-to-end: agency, logistics, on-site execution</li>
+              <li>5,000-6,000 visitors collectively; 100+ leads generated</li>
+            </ul>
+            <div class="work-footer">
+              <div class="work-tags">
+                <span class="work-tag">Event Marketing</span>
+                <span class="work-tag">Project Management</span>
+                <span class="work-tag">Agency Management</span>
+                <span class="work-tag">Cross-functional</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="work-card card-4 reveal reveal-delay-4">
-      <div class="work-card-visual">
-        <div class="visual-bg"></div>
-        <span class="visual-label">Brand · Events · Merchandise · B2B</span>
+      <div class="work-card-inner">
+        <div class="work-card-front">
+          <div class="work-card-preview">
+            <img src="corporate%20video%20bts.jpeg" alt="Sales &amp; Event Materials" style="object-position: center center;" />
+          </div>
+          <div class="work-card-front-info">
+            <div class="work-title">Sales &amp; Event Materials</div>
+            <span class="flip-hint">See details →</span>
+          </div>
+        </div>
+        <div class="work-card-back">
+          <div class="work-card-body">
+            <span class="flip-back-hint">↺ tap to close</span>
+            <ul class="work-desc">
+              <li>Delivered corporate video for client pitches and events, taking full ownership 2 weeks before shoot</li>
+              <li>Designed event collateral (brochures, pull-up banners) for 4 business centres</li>
+            </ul>
+            <div class="work-footer">
+              <div class="work-tags">
+                <span class="work-tag">Project Management</span>
+                <span class="work-tag">Agency Management</span>
+                <span class="work-tag">Brand</span>
+                <span class="work-tag">Design</span>
+              </div>
+              <a href="https://drive.google.com/file/d/1rLEiTtpZz___Z5zAACJC_euDYC-l5HME/view?usp=sharing" target="_blank" class="work-link">Watch video <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="work-card-body">
-        <div class="work-title">Brand Design &amp; Collateral</div>
-        <ul class="work-desc">
-          <li>Designed event collateral (brochures, pull-up banners) for 4 business centres</li>
-          <li>Designed corporate jacket worn by 800+ employees company-wide</li>
-        </ul>
-        <div class="work-footer">
-          <div class="work-tags">
-            <span class="work-tag">Brand</span>
-            <span class="work-tag">Design</span>
-            <span class="work-tag">Adobe Illustrator</span>
-            <span class="work-tag">Canva</span>
-            <span class="work-tag">Internal Comms</span>
+    </div>
+    <div class="work-card card-5 reveal reveal-delay-5">
+      <div class="work-card-inner">
+        <div class="work-card-front">
+          <div class="work-card-preview">
+            <img src="eServ%20jacket.png" alt="Internal Branding" style="object-position: center center;" />
+          </div>
+          <div class="work-card-front-info">
+            <div class="work-title">Internal Branding</div>
+            <span class="flip-hint">See details →</span>
+          </div>
+        </div>
+        <div class="work-card-back">
+          <div class="work-card-body">
+            <span class="flip-back-hint">↺ tap to close</span>
+            <ul class="work-desc">
+              <li>Designed corporate jacket worn by 800+ employees company-wide</li>
+              <li>Created in-office tent cards to drive employee engagement with company LinkedIn, contributing to follower growth</li>
+            </ul>
+            <div class="work-footer">
+              <div class="work-tags">
+                <span class="work-tag">Brand</span>
+                <span class="work-tag">Design</span>
+                <span class="work-tag">Internal Comms</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1343,26 +1699,80 @@ op0-<!DOCTYPE html>
   <p class="work-sub-label reveal">Marketing Operations &amp; Automation</p>
   <div class="work-grid">
     <div class="work-card card-1 reveal reveal-delay-1">
-      <div class="work-card-visual">
-        <div class="visual-bg"></div>
-        <span class="visual-label">CRM · Automation · B2C</span>
-      </div>
-      <div class="work-card-body">
-        <div class="work-title">CRM &amp; Lead Management</div>
-        <ul class="work-desc">
-          <li>Identified manual post-event bottleneck; built a Zoho CRM-based fix</li>
-          <li>Automated lead capture forms and post-event email sequences</li>
-          <li>Cut post-event admin time significantly</li>
-        </ul>
-        <div class="work-footer">
-          <div class="work-tags">
-            <span class="work-tag">Zoho CRM</span>
-            <span class="work-tag">Workflow Automation</span>
-            <span class="work-tag">Lead Management</span>
+      <div class="work-card-inner">
+        <div class="work-card-front">
+          <div class="work-card-preview">
+            <img src="workflow.jpeg" alt="CRM &amp; Lead Management" />
+          </div>
+          <div class="work-card-front-info">
+            <div class="work-title">CRM &amp; Lead Management</div>
+            <span class="flip-hint">See details →</span>
+          </div>
+        </div>
+        <div class="work-card-back">
+          <div class="work-card-body">
+            <span class="flip-back-hint">↺ tap to close</span>
+            <ul class="work-desc">
+              <li>Proposed and built a Zoho CRM solution that saved 2-3 hours of manual work per event</li>
+              <li>Integrated Zoho Forms, automated registration workflows and post-event email sequences across 3-4 annual events</li>
+              <li>Enabled sales to track and manage follow-up pipeline directly in CRM</li>
+            </ul>
+            <div class="work-footer">
+              <div class="work-tags">
+                <span class="work-tag">Zoho CRM</span>
+                <span class="work-tag">Workflow Automation</span>
+                <span class="work-tag">Lead Management</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE & EDUCATION ── -->
+<section id="experience">
+  <div class="reveal">
+    <h2 class="section-title">Experience &amp; Education</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <p class="exp-section-label reveal">💼 Work Experience</p>
+  <div class="exp-card-grid reveal reveal-delay-1">
+    <div class="exp-card">
+      <div class="exp-card-role">Marketing Executive</div>
+      <div class="exp-card-company">ST Engineering</div>
+      <div class="exp-card-date">2022 — Present</div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-card-role">Senior Digital Marketing Executive</div>
+      <div class="exp-card-company">Adred Creative</div>
+      <div class="exp-card-date">2021 — 2022</div>
+    </div>
+  </div>
+
+  <p class="exp-section-label cert-label reveal">🎓 Education</p>
+  <div class="exp-card-grid reveal reveal-delay-1">
+    <div class="exp-card edu-card">
+      <div class="exp-card-role">Bachelor of Business (Marketing)</div>
+      <div class="exp-card-company">Nanyang Technological University</div>
+      <div class="exp-card-date">2018 — 2021</div>
+    </div>
+  </div>
+
+  <p class="exp-section-label cert-label reveal">🏅 Certifications</p>
+  <div class="cert-grid reveal reveal-delay-1">
+    <a href="https://drive.google.com/file/d/1gmuRiGtZ4uWw8xM1KtYCr-ajucuBsSRf/view?usp=sharing" target="_blank" class="cert-item">
+      <div class="cert-name">Google AI Essentials</div>
+      <div class="cert-issuer">Google</div>
+      <div class="cert-view">View certificate ↗</div>
+    </a>
+    <a href="https://drive.google.com/file/d/1scoFVtR-E2j1JXu7onmUpVr9oMDQhkCO/view?usp=sharing" target="_blank" class="cert-item">
+      <div class="cert-name">Becoming a Product Manager: A Complete Guide</div>
+      <div class="cert-issuer">IIBA</div>
+      <div class="cert-view">View certificate ↗</div>
+    </a>
   </div>
 </section>
 
@@ -1404,7 +1814,7 @@ op0-<!DOCTYPE html>
     <div class="tool-card reveal reveal-delay-3">
       <div class="tool-icon">Coding &amp; Planning</div>
       <div class="tool-name">Claude</div>
-      <div class="tool-desc">Vibe coding, planning andbuilding. Including this website, entirely self-taught.</div>
+      <div class="tool-desc">Used to build this portfolio entirely from scratch, self-taught.</div>
     </div>
   </div>
 </section>
@@ -1620,6 +2030,14 @@ op0-<!DOCTYPE html>
   }, { threshold: 0.5 });
 
   document.querySelectorAll('.stat-num').forEach(el => statObs.observe(el));
+
+  /* ── WORK CARD FLIP ── */
+  document.querySelectorAll('.work-card').forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      card.classList.toggle('flipped');
+    });
+  });
 
   /* ── MOBILE NAV ── */
   const hamburger = document.getElementById('nav-hamburger');
