@@ -622,9 +622,11 @@ op0-<!DOCTYPE html>
       min-width: 0;
     }
     .work-card-front-info .work-title {
-      white-space: nowrap;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      line-clamp: 2;
       overflow: hidden;
-      text-overflow: ellipsis;
       min-width: 0;
     }
     .visual-label {
@@ -1152,17 +1154,23 @@ op0-<!DOCTYPE html>
       #hero { padding: 0 1.5rem; }
       .hero-banner { flex-direction: column; gap: 2.5rem; text-align: center; }
       .hero-banner-left { align-items: center; }
+      .hero-headline { white-space: normal; }
       .hero-photo-placeholder { width: 200px; height: 240px; }
       #about .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .tools-grid { grid-template-columns: 1fr; }
       .work-grid { grid-template-columns: 1fr; }
+      .work-sub-label { margin-top: 40px; }
+      .exp-section-label { margin-top: 40px; }
+      .exp-card-grid { grid-template-columns: 1fr; max-width: 100%; }
+      .cert-grid { grid-template-columns: 1fr; max-width: 100%; }
       .contact-link { width: 100%; }
       footer { padding: 1.5rem 1.5rem; }
     }
     @media (max-width: 520px) {
       .stats-grid { grid-template-columns: 1fr; }
-      .hero-headline { font-size: clamp(2.8rem, 10vw, 4rem); white-space: normal; }
+      .hero-headline { font-size: clamp(2.8rem, 10vw, 4rem); }
+      .work-card { height: 420px; }
     }
   </style>
 </head>
